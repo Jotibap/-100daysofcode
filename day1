@@ -1,0 +1,28 @@
+🌟 Day 1 of #100DaysOfCode Challenge! 🌟
+
+Excited to kick off my journey of consistent learning and growth! 🚀 For the next 100 days, I'll be focusing on #Java_DSA.
+
+💡 Today I learned about:
+*Introduction to Java - 
+  Java code -> bytecode (javac) -> machine code (JVM converts) for Execution
+  
+*Input -
+  Scanner sc = new Scanner(System.in);
+  
+*Output -
+  System.out.println();  ---->will print in line and goes to next line
+  System.out.print();    ---->will print in same line
+  
+*Operators - 
+  +
+  -
+  *
+  /
+  %
+  
+*Data Types -
+  int
+  float
+  double
+  char
+  boolean
