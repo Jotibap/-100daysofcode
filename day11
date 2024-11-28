@@ -1,0 +1,55 @@
+✅Day 11 of #100DaysOfCode Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+Today I covered about : 
+- array[]
+- return sum of arr[] elements 
+- array with functions
+- swap 2 indexes 
+
+#Java #DSA #100DaysOfCode
+
+-----------swap 2 indexes---------
+  public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        int s = sc.nextInt();
+        int e = sc.nextInt();
+        swap(arr, s, e);
+    }
+
+    public static void swap(int[] arr, int s, int e) {
+        int n = arr.length;
+        int temp = arr[s];
+        arr[s] = arr[e];
+        arr[e] = temp;
+
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+-------------Max of arr[]-------------
+  public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        int MAX = Integer.MIN_VALUE;
+        for(int i=0; i<n; i++){
+            if(arr[i] > MAX){
+                MAX = arr[i];
+            }
+        }
+        System.out.println(MAX);
+    }
+}
