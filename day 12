@@ -1,0 +1,138 @@
+✅Day 12 of #100DaysOfCode Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+Today I solved questions on array[] : 
+- reverse an array
+- reverse a part of array
+- rotate array by k
+- count elements greater than itself
+
+
+
+#Java #DSA #100DaysOfCode 
+-------------reverse an given array-----------------
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        reverse(arr);
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i]+" ");
+        }
+    }
+    public static void reverse(int[] arr){
+        int n = arr.length;
+        int sp = 0;
+        int ep = n-1;
+        while(sp<ep){
+            int temp = arr[sp];
+            arr[sp] = arr[ep];
+            arr[ep] = temp;
+            
+            sp++;
+            ep--;
+        }
+    }
+}
+---------------reverse a part of array-----------
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        int s = sc.nextInt();
+        int e = sc.nextInt();
+
+        reverse(arr, s, e);
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void reverse(int[] arr, int s, int e){
+        int n = arr.length;
+        int sp = s;
+        int ep = e;
+        while(sp <= ep){
+            int temp = arr[sp];
+            arr[sp] = arr[ep];
+            arr[ep] = temp;
+            sp++;
+            ep--;
+        }
+    }
+}
+---------------rotate array by k-----------------
+  public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        int k = sc.nextInt();     //-----if k>n {k = n % k}
+
+        reverse(arr, 0, n-1);     // reverse the complete array
+        reverse(arr, 0, k-1);    // reverse the first k element
+        reverse(arr, k, n-1);    // reverse the remaining element
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void reverse(int[] arr, int s, int e){
+        int n = arr.length;
+        int sp = s;
+        int ep = e;
+        while(sp <= ep){
+            int temp = arr[sp];
+            arr[sp] = arr[ep];
+            arr[ep] = temp;
+            sp++;
+            ep--;
+        }
+    }
+}
+------------count elements greater than itself-----------
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i=0; i<n; i++){
+            arr[i] = sc.nextInt();
+        }
+        int k = sc.nextInt();
+        k = k % n;               // if k > n
+
+        reverse(arr, 0, n-1);     // reverse the complete array
+        reverse(arr, 0, k-1);     // reverse the first k element
+        reverse(arr, k, n-1);     // reverse the remaining element
+        for(int i=0; i<n; i++){
+            System.out.print(arr[i] + " ");
+        }
+    }
+
+    public static void reverse(int[] arr, int s, int e){
+        int n = arr.length;
+        int sp = s;
+        int ep = e;
+        while(sp <= ep){
+            int temp = arr[sp];
+            arr[sp] = arr[ep];
+            arr[ep] = temp;
+            sp++;
+            ep--;
+        }
+    }
+}
+-----------two sum---------------------
