@@ -1,0 +1,130 @@
+✅Day 16 of #100DaysOfCode  Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+Today I covered about : 
+- toggle the character
+- reverse the given string()
+- insert Difference
+- check palindrome
+
+#Java  #DSA  #100DaysOfCode
+// toggle characters means A-->a and a-->A-----------------------
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String st = sc.nextLine();
+        char[] ch = st.toCharArray();   
+
+
+        toggle(ch);
+
+        for (int i = 0; i < ch.length; i++) {
+            System.out.print(ch[i]);
+        }
+    }
+
+    public static void toggle(char[] ch) {
+        for (int i = 0; i < ch.length; i++) {
+            if (ch[i] >= 'A' && ch[i] <= 'Z') {
+                ch[i] = (char) (ch[i] + 32);
+            } else {
+                ch[i] = (char) (ch[i] - 32);
+            }
+        }
+    }
+}
+
+// reverse the string------------------------------
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String st = sc.nextLine();
+        char[] ch = st.toCharArray();   
+
+
+        reverse(ch);
+
+        for (int i = 0; i < ch.length; i++) {
+            System.out.print(ch[i]);
+        }
+    }
+
+    private static void reverse(char[] ch) {
+        int sp = 0;
+        int ep = ch.length - 1;
+
+        while (sp < ep) {
+            char temp = ch[sp];
+            ch[sp] = ch[ep];
+            ch[ep] = temp;
+
+            sp++;
+            ep--;   
+
+        }
+    }
+}
+
+// inserts between each pair of characters the difference between their ascii-------------
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String st = sc.nextLine();
+        insertDiff(st);
+        System.out.println(insertDiff(st));
+    }
+
+    public static String insertDiff(String st) {
+        int n = st.length();
+        String ans = "";
+        for (int i = 0; i < n - 1; i++) {
+            ans += st.charAt(i);
+            int temp = st.charAt(i + 1) - st.charAt(i);
+            ans += temp;
+        }
+        ans += st.charAt(n - 1);
+        return ans;
+    }
+}
+
+// check palindrome or not----------------------------
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        String S = sc.nextLine();
+        System.out.println(palindrom(S));   
+
+    }
+
+    public static boolean palindrom(String S) {
+        int n = S.length();
+        char[] arr = new char[n];
+
+        for (int i = 0; i < n; i++) {
+            if (S.charAt(i) >= 'a' && S.charAt(i) <= 'z') {
+                arr[i] = (char) (S.charAt(i) - 32);
+            } else {
+                arr[i] = S.charAt(i);
+            }
+        }
+
+        int sp = 0;
+        int ep = n - 1;
+
+        while (sp < ep) {
+            if (arr[sp] != arr[ep]) {
+                return false;
+            } else {
+                sp++;
+                ep--;
+            }
+        }
+
+        return true;
+    }
+}
