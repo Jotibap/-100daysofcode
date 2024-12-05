@@ -1,0 +1,69 @@
+✅Day 17 of #100DaysOfCode Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+Today I tackled about : 
+- linked List()
+- operation on LL
+
+
+✅------ delete node in LL---------
+class Solution {
+    Node deleteNode(Node head, int x) {
+        // If deleting the head node
+        if (x == 1) {
+            head = head.next;
+            return head;
+        }
+        
+        // Traverse to the (x-1)th node
+        Node temp = head;
+        for (int i = 1; i < x - 1; i++) {
+            temp = temp.next;
+        }
+        
+        // Remove the xth node
+        temp.next = temp.next.next;
+        return head;
+    }
+}
+✅------delete a specific element in LL----------
+class Solution {
+    public void deleteNode(ListNode node) {
+        // Copy the value of the next node to the current node
+        node.val = node.next.val;
+        // Link to the node after the next node
+        node.next = node.next.next;
+    
+ ✅------ reverse a LL-------------
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode prev = null; // Previous pointer
+        ListNode curr = head; // Current pointer
+        
+        while (curr != null) {
+            ListNode nextNode = curr.next; // Store next node
+            curr.next = prev; // Reverse the link
+            prev = curr; // Move prev to the current node
+            curr = nextNode; // Move curr to the next node
+        }
+        
+        return prev; // New head of the reversed list
+    }
+}
+
+  ✅------remove duplicates from LL-------
+class Solution {
+    Node deleteNode(Node head, int x) {
+        if (x == 1) {
+            return head.next;
+        }
+
+        Node temp = head;
+        for (int i = 1; i < x - 1; i++) {
+            temp = temp.next;
+        }
+        temp.next = temp.next.next;
+        return head;
+    }
+}
