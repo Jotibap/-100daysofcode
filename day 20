@@ -1,0 +1,98 @@
+✅Day 20 of #100DaysOfCode Challenge!🚀
+🌱Continuing my #Java_DSA journey✨
+Today I covered about : 
+- Stacks
+  
+✅Problems :
+
+✅1047 - Given a string consisting of lowercase English letters, 
+          the task is to repeatedly remove adjacent and equal letters until no more removals are possible.
+          The final string after all removals is the desired output.
+
+
+Example:
+Input: "abbaca"
+Output: "ca"
+
+public class Solution {
+    public String removeDuplicates(String s) {
+        Stack<Character> stack = new Stack<>();
+        for (char c : s.toCharArray()) {
+            if (!stack.isEmpty() && stack.peek() == c) {
+                stack.pop();
+            } else {
+                stack.push(c);
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        while (!stack.isEmpty()) {
+            sb.append(stack.pop());
+        }
+        return sb.reverse().toString();
+    }
+}
+
+------------------------------------------------------------------------------------------------------
+✅20 - Given a string containing only the characters '(', ')', '[', ']', '{', '}', determine if the input string is valid.
+
+Input: "()[]{}"
+Output: true
+
+  public class Solution {
+    public boolean isValid(String s) {
+        Stack<Character> stack = new Stack<>();
+        Map<Character, Character> map = new HashMap<>();
+        map.put(')', '(');
+        map.put(']', '[');
+        map.put('}', '{');
+        for (char c : s.toCharArray()) {
+            if (map.containsKey(c)) {
+                if (stack.isEmpty() || stack.pop() != map.get(c)) {
+                    return false;
+                }
+            } else {
+                stack.push(c);
+            }
+        }
+        return stack.isEmpty();
+    }
+}
+
+--------------------------------------------------------------------------------------------------------
+✅155 - Design a stack that supports push, pop, top, and retrieving the minimum element in constant time.
+1. MinStack()
+2. push(int val)
+3. pop()
+4. top()
+5. getMin()
+
+class MinStack {
+    private Stack<Integer> stack;
+    private Stack<Integer> minStack;
+
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+    }
+
+    public void push(int val) {
+        stack.push(val);
+        if (minStack.isEmpty() || val <= minStack.peek()) {
+            minStack.push(val);
+        }
+    }
+
+    public void pop() {
+        if (stack.pop().equals(minStack.peek())) {
+            minStack.pop();
+        }
+    }
+
+    public int top() {
+        return stack.peek();
+    }
+
+    public int getMin() {
+        return minStack.peek();
+    }
+}
