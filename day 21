@@ -1,0 +1,53 @@
+Your tweet looks great! Here's a slightly refined version with perfect grammar:
+
+---
+
+✅ Day 21 of #100DaysOfCode 🚀
+
+🌱 Continuing my #Java_DSA journey ✨  
+
+Today's concepts covered:  
+- Bit Manipulation  
+- Binary ↔ Decimal Conversions  
+- Bitwise Operators  
+
+✅ Problems Solved:  
+✅- check given no. is Even or Odd using bitwise operator
+
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        
+        checkEvenOdd(n);
+    }
+    public static void checkEvenOdd(int n){
+        if((n & 1) == 0){
+            System.out.println("Even");
+        }else{
+            System.out.println("Odd");
+        }
+    }
+}
+----------------------------------------------------------
+✅- Find the unique element in an array 
+public class Main {
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        
+        for (int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+        unique(arr);
+        System.out.println(unique(arr));
+    }
+    public static int unique(int[] arr){
+        int ans = 0;
+        for(int i=0; i<arr.length; i++){
+            ans = (ans ^ arr[i]);
+        }
+        return ans;
+    }
+}
