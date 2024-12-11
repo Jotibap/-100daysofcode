@@ -1,0 +1,42 @@
+✅Day 23 of #100DaysOfCode Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+ ✅hashmap problem : count freq of element in given array.
+
+   public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int m = sc.nextInt();
+        
+        int[] arr = new int[n];
+        int[] q = new int[m];
+        
+        for(int i=0; i<n; i++){
+            arr[i]=sc.nextInt();
+        }
+        for(int i=0; i<m; i++){
+            q[i]= sc.nextInt();
+        }
+        freq(arr,q);
+    }
+    public static void freq(int[]arr, int[] q){
+        HashMap<Integer,Integer> hm = new HashMap<>();
+        for(int num : arr){
+            if(hm.containsKey(num) == true){
+                int temp = hm.get(num);
+                hm.put(num, temp+1);
+            }else{
+                hm.put(num, 1);
+            }
+        }
+        for(int num: q){
+            if(hm.containsKey(num) == true){
+                System.out.println(hm.get(num));
+            }else{
+                System.out.println(0);
+            }
+        }
+    }
+}
