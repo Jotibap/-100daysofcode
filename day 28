@@ -1,0 +1,88 @@
+✅Day 28 of #100DaysOfCode Challenge!🚀
+
+🌱Continuing my #Java_DSA journey✨
+
+Today's solved problems : 
+✅Reverse First K Elements of Queue
+  class GfG {
+    // Function to reverse first k elements of a queue.
+    public Queue<Integer> modifyQueue(Queue<Integer> q, int k) {
+        Stack<Integer> st = new Stack<>();
+        int n = q.size();
+        
+        for(int i = 0; i < k; i++) {
+            st.push(q.remove());
+        }
+        for(int i = 0; i < k; i++) {
+            q.add(st.pop());
+        }
+        for(int i = 0; i < n - k; i++) {
+            q.add(q.remove());
+        }
+        return q;
+    }
+}
+
+✅Found Queue K th Number
+  import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        
+        System.out.println(Kelement(k));
+    }
+    
+    public static String Kelement(int k) {
+        Queue<String> q = new LinkedList<>();
+        q.add("1");
+        q.add("2");
+        
+        String ans = "";
+        for (int i = 0; i < k; i++) {
+            String rem = q.remove();
+            ans = rem;
+            
+            q.add(rem + "1");
+            q.add(rem + "2");
+        }
+        return ans;
+    }
+}
+
+✅Find the kth even-length palindrome number in the increasing series
+  import java.util.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int k = sc.nextInt();
+        System.out.println(Palindrome(k));
+    }
+
+    public static String Palindrome (int k){
+        Queue<String> q = new LinkedList<>();
+        q.add("11");
+        q.add("22");
+
+        for(int i = 1; i <= k; i++) {
+            String temp = q.remove();
+            String ans = temp;
+
+            String left = temp.substring(0, temp.length()/2);
+            String right = temp.substring(temp.length()/2, temp.length());
+
+            q.add(left+"11"+right);
+            q.add(left+"22"+right);
+
+            return ans;
+        }
+        return "";
+    }
+}
