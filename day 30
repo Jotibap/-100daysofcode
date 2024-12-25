@@ -1,0 +1,44 @@
+✅Day 30 of #100DaysOfCode Challenge!🚀
+
+✅Leetcode - 295. Find Median from Data Stream
+  
+The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value, and the median is the mean of the two middle values.
+
+For example, for arr = [2,3,4], the median is 3.
+For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.
+  
+Example 1:
+
+Input
+["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
+[[], [1], [2], [], [3], []]
+Output
+[null, null, null, 1.5, null, 2.0]
+
+✅class MedianFinder {
+    PriorityQueue<Integer> small;
+    PriorityQueue<Integer> large;
+
+    public MedianFinder() {
+        small = new PriorityQueue<>(Collections.reverseOrder());
+        large = new PriorityQueue<>();        
+    }
+    
+    public void addNum(int num) {
+        if(small.size() == large.size()){
+            large.add(num);
+            small.add(large.remove());
+        }else{
+            small.add(num);
+            large.add(small.remove());
+        }
+    }
+    
+    public double findMedian() {
+        if(small.size() == large.size()){
+            return(small.peek() + large.peek()) / 2.0;
+        }else{
+            return small.peek();
+        }
+    }
+}
