@@ -1,4 +1,70 @@
 ✅Day 32 of #100DaysOfCode Challenge!🚀
 🌿Continuing my #Java_DSA journey✨
 
-✅Todays covered topics:
+✅Todays solved problems:
+
+✅144. Binary Tree Preorder Traversal
+Given the root of a binary tree, return the preorder traversal of its nodes' values.
+
+Input: root = [1,null,2,3]
+Output: [1,2,3]
+
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> curr = new ArrayList<>();
+        preorder(root, curr);
+        return curr;
+    }
+    public void preorder(TreeNode root, List<Integer> curr){
+        if(root == null){
+            return;
+        }
+        curr.add(root.val);
+        preorder(root.left,curr);
+        preorder(root.right,curr);
+    }
+}
+-----------------------------------------------------------------------------------
+✅94. Binary Tree Inorder Traversal
+Given the root of a binary tree, return the inorder traversal of its nodes' values.
+
+Input: root = [1,null,2,3]
+Output: [1,3,2]
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        List<Integer> curr = new ArrayList<>();
+        inorder(root, curr);
+        return curr;
+    }
+    public void inorder(TreeNode root, List<Integer> curr){
+        if(root == null){
+            return;
+        }
+        inorder(root.left,curr);
+        curr.add(root.val);
+        inorder(root.right,curr);
+    }
+}
+-----------------------------------------------------------------------------------
+✅145. Binary Tree Postorder Traversal
+Given the root of a binary tree, return the postorder traversal of its nodes' values.
+
+Input: root = [1,null,2,3]
+Output: [3,2,1]
+
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        List<Integer> curr = new ArrayList<>();
+        postorder(root, curr);
+        return curr;
+    }
+    public void postorder(TreeNode root, List<Integer> curr){
+        if(root == null){
+            return;
+        }
+        postorder(root.left,curr);
+        postorder(root.right,curr);
+        curr.add(root.val);
+    }
+}
