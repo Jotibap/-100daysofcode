@@ -2,3 +2,49 @@
 🌿Continuing my #Java_DSA journey✨
 
 ✅Todays solved problems:
+
+✅(GFG)Size of Binary Tree-
+Given a binary tree, you have to return the size of it. Size of binary tree is defined as number of nodes in it.
+
+Examples:
+Input:      
+       1
+     /  \
+    2    3
+Output: 3
+
+class Solution {
+    public static int getSize(Node node) {
+        if(node == null){
+            return 0;
+        }
+        int x = getSize(node.left);
+        int y = getSize(node.right);
+        return(x + y + 1);
+    }
+}
+------------------------------------------------------------------------------------------------------
+✅Sum of Binary Tree
+Given a binary tree, find the sum of values of all the nodes. 
+
+Examples:
+Input: root = [10, 20, 30, 40, 60, N, N]
+           10
+         /   \
+        20    30
+      /    \
+    40     60
+Output: 160
+
+class Solution {
+    static int sumBT(Node root) {
+        if(root == null){
+            return 0;
+        }
+        int x = sumBT(root.left);
+        int y = sumBT(root.right);
+        
+        return(x + y + root.data);
+    }
+}
+------------------------------------------------------------------------------------------------
