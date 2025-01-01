@@ -1,0 +1,94 @@
+✅Day 37 of #100DaysOfCode Challenge!🚀
+🌿Continuing my #Java_DSA journey✨
+
+✅Solved problrms:
+
+✅GFG - ZigZag Tree Traversal
+Given a binary tree with n nodes. Find the zig-zag level order traversal of the binary tree.
+In zig zag traversal starting from the first level go from left to right for odd-numbered levels and right to left for even-numbered levels.
+
+Input:
+        1
+      /   \
+     2      3
+    / \    /  \
+   4   5  6    7
+Output: [1, 3, 2, 4, 5, 6, 7]
+Explanation:
+For level 1 going left to right, we get traversal as {1}.
+For level 2 going right to left, we get traversal as {3,2}.
+For level 3 going left to right, we get traversal as {4,5,6,7}.
+Merging all this traversals in single array we get {1,3,2,4,5,6,7}.
+  
+  class GFG
+{
+    //Function to store the zig zag order traversal of tree in a list.
+	ArrayList<Integer> zigZagTraversal(Node root)
+	{
+	    Stack<Node> ms = new Stack<>();
+	    Stack<Node> cs = new Stack<>();
+	    ArrayList<Integer> ar = new ArrayList<>();
+	    
+	    int lvl = 1;
+	    ms.push(root);
+	    while(!ms.isEmpty()){
+	        while(!ms.isEmpty()){
+	            Node curr = ms.pop();
+	            ar.add(curr.data);
+	            
+	            if(lvl % 2 != 0){
+	                if(curr.left != null) cs.push(curr.left);
+	                if(curr.right != null) cs.push(curr.right);
+	            }else{
+	                if(curr.right != null) cs.push(curr.right);
+	                if(curr.left != null) cs.push(curr.left);
+	            }
+	        }
+	        lvl++;
+	        Stack<Node> temp = ms;
+	        ms = cs;
+	        cs = temp;
+	    }
+	    return ar;
+	}
+}
+----------------------------------------------------------------------------------------------------
+✅ 1161. Maximum Level Sum of a Binary Tree
+Given the root of a binary tree, the level of its root is 1, the level of its children is 2, and so on.
+Return the smallest level x such that the sum of all the values of nodes at level x is maximal.
+  
+Input: root = [1,7,0,7,-8,null,null]
+Output: 2
+Explanation: 
+Level 1 sum = 1.
+Level 2 sum = 7 + 0 = 7.
+Level 3 sum = 7 + -8 = -1.
+So we return the level with the maximum sum which is level 2.
+
+  class Solution {
+    public int maxLevelSum(TreeNode root) {
+        Queue<TreeNode> q = new LinkedList<>();
+        int ans = 1, maxsum = Integer.MIN_VALUE;
+        q.add(root);
+        int lvl = 1;
+
+        while(!q.isEmpty()){
+            int s = q.size();
+            int sum = 0;
+
+            for(int i=0; i<s; i++){
+                TreeNode curr = q.remove();
+                sum += curr.val;
+
+                if(curr.left != null) q.add(curr.left);
+                if(curr.right != null) q.add(curr.right);
+            }
+            if(sum > maxsum){
+                maxsum = sum;
+                ans = lvl;
+            }
+            lvl++;
+        }
+        return ans;
+    }
+}
