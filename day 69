@@ -1,0 +1,142 @@
+✅Day 69 of #100DaysOfCode Challenge!🚀
+
+- Java core revision
+- started Springboot
+- revision advance java
+
+  
+- created basic quize program
+#Main.java
+  public class Main {
+    public static void main(String[] args) {
+
+        QuestionService service = new QuestionService();
+        service.playQuize();
+        service.printScore();
+    }
+}
+
+#QuestionService.java
+  
+import java.util.Scanner;
+
+public class QuestionService {
+
+    Question[] questions = new Question[5];
+    String[] selection = new String[5];
+
+    public QuestionService(){
+        questions[0] = new Question(1, "Size of int?", "2", "4", "6", "8", "4");
+        questions[1] = new Question(2, "Size of double?", "2", "4", "6", "8", "8");
+        questions[2] = new Question(3, "Size of char?", "2", "4", "6", "8", "2");
+        questions[3] = new Question(4, "Size of long?", "2", "4", "6", "8", "8");
+        questions[4] = new Question(5, "Size of boolean?", "2", "1", "6", "8", "1");
+
+    }
+
+    public void playQuize(){
+        int i = 0;
+        for(Question q : questions){
+            System.out.println("Question no." + q.getId());
+            System.out.println(q.getQuestion());
+            System.out.println(q.getOps1());
+            System.out.println(q.getOps2());
+            System.out.println(q.getOps3());
+            System.out.println(q.getOps4());
+
+            Scanner sc = new Scanner(System.in);
+            selection[i] = sc.nextLine();
+            i++;
+        }
+        for (String s : selection){
+//            System.out.println(s);
+        }
+    }
+    public void printScore(){
+        int score = 0;
+
+        for (int i=0; i< questions.length; i++){
+            Question que = questions[i];
+            String actualAnswer = que.getAnswer();
+            String userAnswer = selection[i];
+
+            if (actualAnswer.equals(userAnswer)){
+                score++;
+            }
+        }
+        System.out.println("Your score is : "+ score);
+    }
+}
+
+#Question.java
+public class Question {
+
+        private int id;
+        private String question;
+        private String ops1;
+        private String ops2;
+        private String ops3;
+        private String ops4;
+        private String answer;
+        public int getId() {
+            return id;
+        }
+
+        public Question(int id, String question, String ops1, String ops2, String ops3, String ops4, String answer) {
+            this.id = id;
+            this.question = question;
+            this.ops1 = ops1;
+            this.ops2 = ops2;
+            this.ops3 = ops3;
+            this.ops4 = ops4;
+            this.answer = answer;
+        }
+
+
+        public void setId(int id) {
+            this.id = id;
+        }
+        public String getQuestion() {
+            return question;
+        }
+        public void setQuestion(String question) {
+            this.question = question;
+        }
+        public String getOps1() {
+            return ops1;
+        }
+        public void setOps1(String ops1) {
+            this.ops1 = ops1;
+        }
+        public String getOps2() {
+            return ops2;
+        }
+        public void setOps2(String ops2) {
+            this.ops2 = ops2;
+        }
+        public String getOps3() {
+            return ops3;
+        }
+        public void setOps3(String ops3) {
+            this.ops3 = ops3;
+        }
+        public String getOps4() {
+            return ops4;
+        }
+        public void setOps4(String ops4) {
+            this.ops4 = ops4;
+        }
+        public String getAnswer() {
+            return answer;
+        }
+        public void setAnswer(String answer) {
+            this.answer = answer;
+        }
+
+        @Override
+        public String toString() {
+            return "Question [id=" + id + ", question=" + question + ", ops1=" + ops1 + ", ops2=" + ops2 + ", ops3="
+                    + ops3 + ", ops4=" + ops4 + ", answer=" + answer + "]";
+        }
+                
+}
