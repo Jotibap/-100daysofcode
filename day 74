@@ -6,6 +6,136 @@
  - data types
  - variables
 
+
 ✅ Spring Boot:
  - Hibernate intro
- - setup
+
+✅ SET-UP & SAVING the data in database
+
+✅Main.java
+package org.example;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Student s1 = new Student();
+        s1.setRollNO(21);
+        s1.setsName("Jotiba");
+        s1.setsAge(22);
+
+        Configuration cfg = new Configuration();
+        cfg.addAnnotatedClass(org.example.Student.class);
+        cfg.configure();
+
+        SessionFactory sf = cfg.buildSessionFactory();
+        Session session = sf.openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.save(s1);
+
+        transaction.commit();
+
+        System.out.println(s1);
+    }
+}
+
+✅hibernate.cfg.xml
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+        
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/demo</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">0000</property>
+        
+        <property name="hibernate.hbm2ddl.auto">update</property>
+
+    </session-factory>
+</hibernate-configuration>
+
+✅pom.xml(HibDemo)
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>HibDemo</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.4</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.8.Final</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
+
+✅Student.java
+package org.example;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Student {
+    @Id
+    private int rollNO;
+    private String sName;
+    private int sAge;
+
+    public int getRollNO() {
+        return rollNO;
+    }
+
+    public void setRollNO(int rollNO) {
+        this.rollNO = rollNO;
+    }
+
+    public String getsName() {
+        return sName;
+    }
+
+    public void setsName(String sName) {
+        this.sName = sName;
+    }
+
+    public int getsAge() {
+        return sAge;
+    }
+
+    public void setsAge(int sAge) {
+        this.sAge = sAge;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "rollNO=" + rollNO +
+                ", sName='" + sName + '\'' +
+                ", sAge=" + sAge +
+                '}';
+    }
+}
