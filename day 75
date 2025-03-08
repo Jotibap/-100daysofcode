@@ -1,10 +1,217 @@
 ✅Day 75 of #100DaysOfCode Challenge!🚀
 
 ✅ DSA:
- - 
- - 
- - 
+ - float & double
+ - operators
+ - if-else
 
 
 ✅ Spring Boot:
- - Hibernate 
+ - Hibernate properties, code optimization, dialect, deprecated methods ->new methods
+ - Fetching data, update, delete
+ - Changing table_name & column_name
+ - @Embaddable
+ - Mapping relationship(@OneToOne)
+
+✅Main.java
+package org.example;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Address a1 = new Address();
+        a1.setAid(1);
+        a1.setDist("Thane");
+        a1.setPin(590001);
+
+        Bio b1 = new Bio();
+        b1.setSno(111);
+        b1.setSname("Sam");
+        b1.setCity("Mumbai");
+        b1.setAddress(a1);
+
+
+        SessionFactory sf = new Configuration()
+                .addAnnotatedClass(org.example.Bio.class)
+                .addAnnotatedClass(org.example.Address.class)
+                .configure()
+                .buildSessionFactory();
+
+        Session session = sf.openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.persist(a1);
+        session.persist(b1);
+
+        transaction.commit();
+
+        System.out.println(b1);
+    }
+}
+
+✅hibernate.cfg.xml
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/demo</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">0000</property>
+
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+    </session-factory>
+</hibernate-configuration>
+
+✅pom.xml(HibPract)
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>HibPract</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.5.Final</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
+
+✅Bio.java
+package org.example;
+
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
+
+@Entity
+public class Bio {
+    @Id
+    private int Sno;
+    private String Sname;
+    private String City;
+
+    @OneToOne
+    private Address address;
+
+    public int getSno() {
+        return Sno;
+    }
+
+    public void setSno(int sno) {
+        Sno = sno;
+    }
+
+    public String getSname() {
+        return Sname;
+    }
+
+    public void setSname(String sname) {
+        Sname = sname;
+    }
+
+    public String getCity() {
+        return City;
+    }
+
+    public void setCity(String city) {
+        City = city;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Bio{" +
+                "Sno=" + Sno +
+                ", Sname='" + Sname + '\'' +
+                ", City='" + City + '\'' +
+                ", address=" + address +
+                '}';
+    }
+}
+
+
+✅Address.java
+package org.example;
+
+import jakarta.persistence.Embeddable;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
+public class Address {
+
+    @Id
+    private int aid;
+    private String dist;
+    private int pin;
+
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public int getPin() {
+        return pin;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "aid=" + aid +
+                ", dist='" + dist + '\'' +
+                ", pin=" + pin +
+                '}';
+    }
+}
