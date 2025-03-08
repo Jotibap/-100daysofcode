@@ -5,7 +5,6 @@
  - operators
  - if-else
 
-
 ✅ Spring Boot:
  - Hibernate properties, code optimization, dialect, deprecated methods ->new methods
  - Fetching data, update, delete
