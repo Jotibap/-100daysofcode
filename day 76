@@ -1,0 +1,246 @@
+✅Day 76 of #100DaysOfCode Challenge!🚀
+
+✅ DSA:
+ - if-else / else-if
+ - while()
+ - logical operator
+
+✅ Spring Boot:
+ - Mapping relationship(@OneMany)
+
+✅Main.java
+package org.example;
+
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
+import java.util.Arrays;
+
+public class Main {
+    public static void main(String[] args) {
+
+        Address a1 = new Address();
+        a1.setAid(1);
+        a1.setDist("Thane");
+        a1.setPin(590001);
+
+        Address a2 = new Address();
+        a2.setAid(2);
+        a2.setDist("Bandra");
+        a2.setPin(590002);
+
+        Address a3 = new Address();
+        a3.setAid(3);
+        a3.setDist("Navi Mumbai");
+        a3.setPin(590003);
+
+        Bio b1 = new Bio();
+        b1.setSno(111);
+        b1.setSname("Sam");
+        b1.setState("Maharashtra");
+
+        b1.setAddress(Arrays.asList(a1, a2, a3));
+
+        a1.setBio(b1);
+        a2.setBio(b1);
+        a3.setBio(b1);
+
+
+        SessionFactory sf = new Configuration()
+                .configure()
+                .addAnnotatedClass(org.example.Bio.class)
+                .addAnnotatedClass(org.example.Address.class)
+                .buildSessionFactory();
+
+        Session session = sf.openSession();
+
+        Transaction transaction = session.beginTransaction();
+
+        session.persist(a1);
+        session.persist(a2);
+        session.persist(a3);
+        session.persist(b1);
+
+        transaction.commit();
+
+        Bio b2 = session.get(Bio.class,111);
+        System.out.println(b2);
+
+        session.close();
+        sf.close();;
+    }
+}
+
+✅hibernate.cfg.xml
+<hibernate-configuration xmlns="http://www.hibernate.org/xsd/orm/cfg">
+    <session-factory>
+
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/demo</property>
+        <property name="hibernate.connection.username">postgres</property>
+        <property name="hibernate.connection.password">0000</property>
+
+        <property name="hibernate.hbm2ddl.auto">create</property>
+
+    </session-factory>
+</hibernate-configuration>
+
+✅pom.xml(HibPract)
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>org.example</groupId>
+    <artifactId>HibPract</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <maven.compiler.source>22</maven.compiler.source>
+        <maven.compiler.target>22</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.7.3</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.hibernate.orm</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>6.6.5.Final</version>
+        </dependency>
+
+    </dependencies>
+
+</project>
+
+✅Bio.java
+package org.example;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+
+import java.util.List;
+
+@Entity
+public class Bio {
+    
+    @Id
+    private int Sno;
+    private String Sname;
+    private String State;
+
+    @OneToMany(mappedBy = "bio")
+    private List<Address> address;
+
+    public int getSno() {
+        return Sno;
+    }
+
+    public void setSno(int sno) {
+        Sno = sno;
+    }
+
+    public String getSname() {
+        return Sname;
+    }
+
+    public void setSname(String sname) {
+        Sname = sname;
+    }
+
+    public String getState() {
+        return State;
+    }
+
+    public void setState(String state) {
+        State = state;
+    }
+
+    public List<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(List<Address> address) {
+        this.address = address;
+    }
+
+    @Override
+    public String toString() {
+        return "Bio{" +
+                "Sno=" + Sno +
+                ", Sname='" + Sname + '\'' +
+                ", State='" + State + '\'' +
+                ", address=" + address +
+                '}';
+    }
+}
+
+✅Address.java
+package org.example;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+
+@Entity
+public class Address {
+
+    @Id
+    private int aid;
+    private String dist;
+    private int pin;
+
+    @ManyToOne
+    private Bio bio;
+
+    public int getAid() {
+        return aid;
+    }
+
+    public void setAid(int aid) {
+        this.aid = aid;
+    }
+
+    public String getDist() {
+        return dist;
+    }
+
+    public void setDist(String dist) {
+        this.dist = dist;
+    }
+
+    public int getPin() {
+        return pin;
+    }
+
+    public void setPin(int pin) {
+        this.pin = pin;
+    }
+
+    public Bio getBio() {
+        return bio;
+    }
+
+    public void setBio(Bio bio) {
+        this.bio = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "Address{" +
+                "aid=" + aid +
+                ", dist='" + dist + '\'' +
+                ", pin=" + pin +
+                '}';
+    }
+}
