@@ -1,6 +1,21 @@
 ✅Day 80 of #100DaysOfCode Challenge!🚀
 
 ✅ DSA:
- - practiced pattern problems on LeeCode playground
+ - factorial without function
+ - nCr and nPr
+ - function and how it works(stack)
 
 ✅ Spring Boot:
+ - autowire xml based configuration
+ - primary Bean
+ - get Bean by Type
+ - inner Bean
+
+ -Java based configuration
+ - Bean name
+ - Scope annotations
+ - autowire in java based configuration
+ - primary & Qualifier
+ - Steriotype annotation
+       ↪️@Component, @ComponentScan, @Autowired,
+ - scope & value
