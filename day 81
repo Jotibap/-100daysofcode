@@ -1,0 +1,12 @@
+✅Day 81 of #100DaysOfCode Challenge!🚀
+
+✅ DSA: 
+ - factorial with function
+ - solved problems of nCr and nPr
+ - solved problems on hackerrank
+
+✅ Spring Boot:
+ - Intro spring to springboot
+ - Annotations in SpringBoot(@Component, @Primary, @Autowired, @Qualifier, @Service, @Repository)
+ - Layer : Client------> Server -------->Db
+                          ↪️Controller, Service, Repositry
