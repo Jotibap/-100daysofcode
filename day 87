@@ -1,0 +1,13 @@
+✅Day 87 of #100DaysOfCode Challenge!🚀
+ 
+ ✅ DSA: 
+  - intro char
+    ↪syntax, user input
+	  ↪ASCII
+		↪typecasting: char->int, int->char
+
+  - intro Strings
+		      ↪syntax, user input
+		-problems:
+          ↪toggle characters(uppercase->lowercase)
+          ↪reverse String
