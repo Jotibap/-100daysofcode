@@ -1,0 +1,14 @@
+✅Day 89 of #100DaysOfCode Challenge!🚀
+ 
+ ✅ DSA:
+    - HashMap
+    - Syntax
+    - key facts
+    - methods -> .put()  .size()  .get()  .ContainsKey()  .remove()
+    - .KeySet() -> .get(key)
+    - foreach loop
+    - ex: find frequency of element
+    - ex: find first non repeating elements
+    - HashSet -> syntax
+    - given arr find distinct elements
+    - ex: pair sum == k
