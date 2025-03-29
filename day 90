@@ -7,4 +7,5 @@
       ✅ex: -calculate sum
             -calculate fact
             -fibonacci series
-            -print increasing order
+            -print increasing 1->N
+            -print decreasing N->1
