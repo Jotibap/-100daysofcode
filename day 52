@@ -1,5 +1,11 @@
 ✅Day 52 of #100DaysOfCode Challenge!🚀
 🌿Continuing my #Java_DSA journey✨
 
-✅Solved problem:
-✅
+ ✅ DSA:
+			- LinkedList
+			- creation on LinkedList
+      - print all the value of LinkedList
+			- insert node at head
+			- insert node at end
+      - insert at middle
+      - delete node of LinkedList
