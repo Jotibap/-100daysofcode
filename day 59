@@ -2,5 +2,9 @@
 🌿Continuing my #Java_DSA journey✨
 
 ✅Solved problem:
-
-✅
+    - size of the tree
+    - sum of all nodes
+    - level order
+    - reverse level order
+    - preorder, inorder, postorder traversal problems
+    - zigzag tree traversal
