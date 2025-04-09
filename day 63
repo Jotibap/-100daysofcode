@@ -1,4 +1,7 @@
 ✅Day 63 of #100DaysOfCode Challenge!🚀
 🌿Continuing my #Java_DSA journey✨
 
-✅Todays covered topics
+✅Todays solved problems:
+    - No. of connected components
+    - topological sort(kohn algorithm)
+    - detect cycle in directed graph
